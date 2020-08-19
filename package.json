@@ -1,0 +1,25 @@
+{
+  "name": "discord_instagram",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev":"nodemon app.js"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Acacio De Lima",
+    "email": "limadeacacio@gmail.com",
+    "url": "https://github.com/limazia"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "discord.js": "^12.3.1",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
