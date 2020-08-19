@@ -5,25 +5,26 @@ const client = new Discord.Client();
 
 client.on('warn', console.warn);
 client.on('error', console.error);
+client.on('guildMemberAdd', () => {});
+client.on('guildMemberRemove', () => {});
+client.on('disconnect', () => {});
+client.on('reconnecting', () => { });
 
 client.on('ready', async () => {
   client.user.setActivity(`${process.env.DISCORD_PREFIX}instagram @user`);
 });
 
-client.on('guildMemberAdd', () => {});
-client.on('guildMemberRemove', () => {});
-client.on('disconnect', () => {});
-client.on('reconnecting', () => {});
 client.on('message', async (message) => {
 
-  if (!message.content.startsWith(process.env.DISCORD_PREFIX) || message.author.bot) return;
-
-  const args = message.content.slice(process.env.DISCORD_PREFIX.length).split(' ');
+  const prefix = process.env.DISCORD_PREFIX;
+  const args = message.content.slice(prefix.length).split(' ');
   const command = args.shift().toLowerCase();
+
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   try {
     let commandFile = require(`./src/commands/${command}.js`);
-    commandFile.run(client, message, args, axios);
+    commandFile.run(client, message, args, axios, prefix);
   } catch (e) {
     console.log(e.stack);
   }
