@@ -24,40 +24,47 @@ exports.run = async (client, message, args, axios, prefix) => {
     "12320855",
   ];
   let colorRand = colorList[Math.floor(Math.random() * colorList.length)];
-  const username = args[0];
-  const { data } = await axios.get(`https://www.instagram.com/${username}/?__a=1`);
 
-  if (!args.length) return message.channel.send(`*Use:* ${"`"}${prefix}instagram @username${"`"}`);
+  if (!args.length)
+    return message.channel.send(`*Use:* ${"`"}${prefix}instagram @username${"`"}`);
 
-  message.channel.send({
-    embed: {
-      color: colorRand,
-      author: {
-        name: `${data["graphql"]["user"].full_name} (@${username})`,
+  try {
+    const username = args[0];
+    const response = await axios.get(`https://www.instagram.com/${username}/?__a=1`);
+    const { data } = response;
+
+    await message.channel.send({
+      embed: {
+        color: colorRand,
+        author: {
+          name: `${data["graphql"]["user"].full_name} (@${username})`,
+        },
+        thumbnail: {
+          url: data["graphql"]["user"].profile_pic_url,
+        },
+        fields: [
+          {
+            name: "Seguidores",
+            value: data["graphql"]["user"]["edge_followed_by"].count,
+            inline: true,
+          },
+          {
+            name: "Seguindo",
+            value: data["graphql"]["user"]["edge_follow"].count,
+            inline: true,
+          },
+          {
+            name: "Biografia",
+            value: data["graphql"]["user"].biography,
+          },
+        ],
+        //footer: {
+        //text: `Criado por Acacio De Lima`
+        //icon_url: 'https://i.imgur.com/1nrsIPc.png'
+        //},
       },
-      thumbnail: {
-        url: data["graphql"]["user"].profile_pic_url,
-      },
-      fields: [
-        {
-          name: "Seguidores",
-          value: data["graphql"]["user"]["edge_followed_by"].count,
-          inline: true,
-        },
-        {
-          name: "Seguindo",
-          value: data["graphql"]["user"]["edge_follow"].count,
-          inline: true,
-        },
-        {
-          name: "Biografia",
-          value: data["graphql"]["user"].biography,
-        },
-      ],
-      //footer: {
-      //text: `Criado por Acacio De Lima`
-      //icon_url: 'https://i.imgur.com/1nrsIPc.png'
-      //},
-    },
-  });
+    });
+  } catch (error) {
+    message.channel.send("Usuário não encontrado.");
+  }
 };
