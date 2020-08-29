@@ -12,6 +12,10 @@ Em seguida, execute o comando de instalação do seu gerenciador de pacotes:
 
 ```npm i``` ou ```yarn```
 
+## .env
+> DISCORD_TOKEN=TOKEN
+> DISCORD_PREFIX=!
+
 ## Exemplo
 
 ![](https://i.imgur.com/5IHyF3p.png)
