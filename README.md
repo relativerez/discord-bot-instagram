@@ -14,7 +14,7 @@ Em seguida, execute o comando de instalação do seu gerenciador de pacotes:
 
 ## .env
 > DISCORD_TOKEN=TOKEN
-> DISCORD_PREFIX=!
+DISCORD_PREFIX=!
 
 ## Exemplo
 
