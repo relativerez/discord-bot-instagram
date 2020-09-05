@@ -1,8 +1,8 @@
-# discord-bot-instagram
+# Discord Bot Instagram
 
-## Créditos
+## Exemplo
 
-Criado por [Acacio De Lima](https://twitter.com/limadeacacio)
+![](https://i.imgur.com/5IHyF3p.png)
 
 ## Instalação
 
@@ -16,6 +16,6 @@ Em seguida, execute o comando de instalação do seu gerenciador de pacotes:
 > DISCORD_TOKEN=TOKEN\
 DISCORD_PREFIX=!
 
-## Exemplo
+## Créditos
 
-![](https://i.imgur.com/5IHyF3p.png)
+Criado por [Acacio De Lima](https://twitter.com/limadeacacio)
